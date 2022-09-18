@@ -32,11 +32,13 @@ app.post("/subscribe", (req, res) => {
   // create payload
   const payload = JSON.stringify({ title: "Push Test" });
 
-  schedule.scheduleJob("*/2 * * * * *", function () {
+  schedule.scheduleJob("*/5 * * * * *", function () {
     // pass object into sendNotification
     webPush
       .sendNotification(subscription, payload)
       .catch((err) => console.error(err));
+
+    console.log("remainder activated");
   });
 });
 
